@@ -1,4 +1,62 @@
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
-container{
-    display: flex;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.active {
+  background-color: #99d9ea !important;
+  border: 1px solid #99d9ea !important;
+}
+
+body {
+  margin: 20px;
+}
+
+body > h1 {
+  border: 1px solid #000;
+  padding: 40px;
+  margin-bottom: 20px;
+}
+
+body > hr {
+  border: 5px solid #99d9ea;
+}
+
+#title {
+  display: flex;
+  gap: 20px;
+}
+
+#title > div {
+  padding: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  border: 1px solid #000;
+  border-bottom: none;
+  cursor: pointer;
+}
+
+#content {
+  padding: 12px 8px;
+}
+
+#content h3 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+#content p {
+  font-size: 18px;
+  padding: 12px 12px;
+}
+
+#content #link {
+  font-size: 18px;
+  margin-top: 12px;
+}
+
+#content #link a {
+  display: block;
+  padding: 6px 0;
 }
