@@ -1,66 +1,138 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARBEIDKRAV 2</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-       <h1>RESURSARKIV</h1>
-    <section id="title">
-      <div onclick="changeContent('HTML')" class="tabs active">HTML</div>
-      <div onclick="changeContent('CSS')" class="tabs">CSS</div>
-      <div onclick="changeContent('JavaScript')" class="tabs">JAVASCRIPT</div>
-      <div onclick="changeContent('React')" class="tabs">React</div>
-      <div onclick="changeContent('Sanity and headless CMS')" class="tabs">
-        Sanity and headless CMS
-      </div>
-    </section>
-    <hr />
+const resources = [
+  {
+    category: "HTML",
+    text: "HTML står for HyperText Markup Language, og er et strukturspråk som brukes for å lage strukturer til nettside- og applikasjonsgrensesnitt.",
+    sources: [
+      {
+        title: "W3Schools",
+        url: "https://www.w3schools.com/html/",
+      },
+      {
+        title: "HTML Living standard",
+        url: "https://html.spec.whatwg.org/multipage/",
+      },
+      {
+        title: "HTML.com Tutorials",
+        url: "https://html.com/",
+      },
+    ],
+  },
+  {
+    category: "CSS",
+    text: "CSS står for Cascading StyleSheets, og brukes for å sette stilregler på HTML-elementer.",
+    sources: [
+      {
+        title: "W3Schools",
+        url: "https://www.w3schools.com/css/",
+      },
+      {
+        title: "W3C HTML & CSS Standards",
+        url: "https://www.w3.org/standards/webdesign/htmlcss.html",
+      },
+      {
+        title: "W3C CSS Validator",
+        url: "https://jigsaw.w3.org/css-validator/",
+      },
+      {
+        title: "CSS Tricks",
+        url: "https://css-tricks.com/",
+      },
+    ],
+  },
+  {
+    category: "JavaScript",
+    text: "JavaScript er et scriptspråk basert på EcmaScript. JavaScript kjører direkte i nettleseren, og brukes ofte til å manipulere HTML og CSS i webgrensnesnitt.",
+    sources: [
+      {
+        title: "W3Schools",
+        url: "https://www.w3schools.com/js/",
+      },
+      {
+        title: "MDN Web Docs",
+        url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+      },
+      {
+        title: "How to read JavaScript Documentation",
+        url: "https://www.youtube.com/watch?v=O3iR-CIufKM",
+      },
+    ],
+  },
+  {
+    category: "React",
+    text: "React er et rammeverk bygget i JavaScript. React bruker komponenter og states for å lage en levende frontend.",
+    sources: [
+      {
+        title: "React documentation",
+        url: "https://reactjs.org/docs/getting-started.html",
+      },
+      {
+        title: "W3Schools",
+        url: "https://www.w3schools.com/REACT/DEFAULT.ASP",
+      },
+      {
+        title: "How to read JavaScript Documentation",
+        url: "https://www.youtube.com/watch?v=O3iR-CIufKM",
+      },
+    ],
+  },
+  {
+    category: "Sanity and headless CMS",
+    text: "Sanity er et headless CMS som står for innholdsadministrasjon. Innhold hentes inn i applikasjoner via GROQ-spørringer.",
+    sources: [
+      {
+        title: "Sanity documentation",
+        url: "https://www.sanity.io/docs",
+      },
+      {
+        title: "OnCrawl: a beginners guide to headless CMS",
+        url: "https://www.oncrawl.com/technical-seo/beginners-guide-headless-cms/",
+      },
+      {
+        title: "Section.io: Getting started with Sanity CMS",
+        url: "https://www.section.io/engineering-education/getting-started-with-sanity-cms/",
+      },
+    ],
+  },
+];
 
-    <section id="content">
-      <h3>HTML</h3>
-      <p>
-        HTML står for HyperText Markup Language, og er et strukturspråk som
-        brukes for å lage strukturer til nettside- og applikasjonsgrensesnitt.
-      </p>
+const contentElement = document.getElementById("content");
 
-      <div id="link">
-        <a target="_blank" href="https://www.w3schools.com/html/"> W3Schools</a>
+function changeContent(title) {
+  //   console.log("title", title);
 
-        <a target="_blank" href="https://html.spec.whatwg.org/multipage/">
-          HTML Living standard</a
-        >
+  let htmlContent = "";
+  let linkContent = "";
 
-        <a target="_blank" href="https://html.com/"> HTML.com Tutorials</a>
-      </div>
-    </section>
+  for (let i = 0; i < resources.length; i++) {
+    if (resources[i].category === title) {
+      //   console.log(resources[i]);
+      document.querySelector(".tabs.active").classList.remove("active");
+      event.srcElement.classList.add("active");
 
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
+      resources[i].sources.forEach((item, index) => {
+        linkContent += `
+            <a target="_blank" href="${item.url}"> ${item.title}</a>
+        `;
+      });
 
-    <script src="./java.js"></script>
-    
-</body>
-</html>
+      htmlContent = `
+        <h3>${resources[i].category}</h3>
+        <p>
+            ${resources[i].text}
+        </p>
+
+        <div id="link">
+            ${linkContent}
+        </div>
+      `;
+    }
+  }
+
+  contentElement.innerHTML = htmlContent;
+}
+
+{
+  /* <a target="_blank" href="${resources[i].sources[0].url}"> ${resources[i].sources[0].title}</a>
+            <a target="_blank" href="${resources[i].sources[1].url}"> ${resources[i].sources[1].title}</a>
+            <a target="_blank" href="${resources[i].sources[2].url}"> ${resources[i].sources[2].title}</a> */
+}
